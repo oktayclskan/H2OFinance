@@ -1,0 +1,6 @@
+C:\Users\Oktay\Documents\GitHub\H2OFinance\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\Oktay\Documents\GitHub\H2OFinance\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\Oktay\Documents\GitHub\H2OFinance\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.AssemblyReference.cache
+C:\Users\Oktay\Documents\GitHub\H2OFinance\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\Oktay\Documents\GitHub\H2OFinance\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+C:\Users\Oktay\Documents\GitHub\H2OFinance\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
