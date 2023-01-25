@@ -8,12 +8,18 @@
     <link href="AdminPanel/Css/AdminGiris.css" rel="stylesheet" />
 </head>
 <body>
-    <form id="form1" runat="server" style="height:100%">
+    <form id="form1" runat="server" style="height: 100%">
         <div class="container silver">
-            
+
             <div class="row">
                 <img class="girisImg" src="AdminPanel/images/H2oDamlaLogo.png" />
             </div>
+            
+                <asp:Panel ID="pnl_hata" runat="server" Visible="false">
+                    <asp:Label ID="lb_hata" runat="server"></asp:Label>
+                </asp:Panel>
+            
+
             <div class="row">
                 <asp:TextBox ID="tb_mail" runat="server" CssClass="inputBox" placeholder="Mail Adresiniz"></asp:TextBox>
             </div>

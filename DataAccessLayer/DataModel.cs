@@ -15,7 +15,7 @@ namespace DataAccessLayer
             con = new SqlConnection(ConnectionStrings.H2OCon);
             cmd = con.CreateCommand();
         }
-        #region YöneticiMetotları
+        
         public  Yoneticiler YoneticiGiris(string mail,string sifre)
         {
             try
@@ -56,6 +56,55 @@ namespace DataAccessLayer
             }
             finally { con.Close(); }
         }
+        #region CoinKontrol
+
+       
+        public bool CoinKontrol(string isim)
+        {
+            try
+            {
+                cmd.CommandText = "SELECT COUNT(*) FROM Coinler WHERE Isim= @isim";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@isim", isim);
+                con.Open();
+                int sayi = Convert.ToInt32(cmd.ExecuteScalar());
+                if (sayi==0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        public bool CoinEkle (Coinler c)
+        {
+            try
+            {
+                cmd.CommandText = "Insert Into Coinler (CoinNick, Isim, Max_Arz) Values (@coinNick, @isim,@maxArz)";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@coinNick", c.CoinNick);
+                cmd.Parameters.AddWithValue("@isim", c.Isim);
+                cmd.Parameters.AddWithValue("@maxArz", c.MaxArz);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
         #endregion
     }
+
 }

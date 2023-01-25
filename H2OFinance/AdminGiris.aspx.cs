@@ -11,29 +11,34 @@ namespace H2OFinance
 {
     public partial class AdminGiris : System.Web.UI.Page
     {
-        DataModel dm =new DataModel();
-        
+        DataModel dm = new DataModel();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(tb_mail.Text) && !string.IsNullOrEmpty(Tb_sifre.Text))
-            {
-                Yoneticiler y =dm.YoneticiGiris(tb_mail.Text,Tb_sifre.Text);
-                if (y !=null)
-                {
-                    Session["yönetici"] = y;
-                    Response.Redirect("HomePage.aspx");
-                }
 
-            }
-            else
-            {
-
-            }
         }
 
         protected void lbtnGiris_Click(object sender, EventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(tb_mail.Text) && !string.IsNullOrEmpty(Tb_sifre.Text))
+            {
+                Yoneticiler y = dm.YoneticiGiris(tb_mail.Text, Tb_sifre.Text);
+                if (y != null)
+                {
+                    Session["yönetici"] = y;
+                    Response.Redirect("HomePage.aspx");
+                }
+                else
+                {
+                    pnl_hata.Visible = true;
+                    lb_hata.Text = "E-posta veya Şifre Hatalı";
+                }
+            }
+            else
+            {
+                pnl_hata.Visible = true;
+                lb_hata.Text = "Kullanıcı Adı veya Şifre Boş Bırakılamaz";
+            }
         }
     }
 }

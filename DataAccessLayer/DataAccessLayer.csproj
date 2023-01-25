@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Coinler.cs" />
     <Compile Include="ConnectionStrings.cs" />
     <Compile Include="DataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
