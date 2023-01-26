@@ -18,7 +18,7 @@
     
     background-color:antiquewhite;
     border-radius:5px;
-    height:25px;
+    height:40px;
     margin-top: 15px;
     width: 300px;
 }
@@ -28,8 +28,40 @@
 }
 .EkleBtn
 {
-    background-color:rosybrown;
+    border-radius:5px;
+    background-color:#0d0909;
+    color:white;
     text-decoration:none;
     padding:10px;
-    border:1px solid red;
+    
+}
+.EkleBtn:hover{
+    color:red;
+}
+.titleHeader h1{
+    text-align:center;
+    padding-top:10px;
+}
+.basarili {
+    margin: 15px auto;
+    border: 1px solid #3e48ba;
+    background-color: #3e48ba;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    width: 295px;
+    padding: 7px;
+    border: 1px solid #820f0f;
+    border-radius: 5px;
+}
+.basarisiz {
+    border-radius:5px;
+    padding:7px;
+    margin:15px auto;
+    justify-content:center;
+    display:flex;
+    width:295px;
+    border: 1px solid #820f0f;
+    background-color: red;
+    
 }

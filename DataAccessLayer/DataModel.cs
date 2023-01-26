@@ -59,13 +59,13 @@ namespace DataAccessLayer
         #region CoinKontrol
 
        
-        public bool CoinKontrol(string isim)
+        public bool VeriKontrol(string tablo ,string kolon , string veri)
         {
             try
             {
-                cmd.CommandText = "SELECT COUNT(*) FROM Coinler WHERE Isim= @isim";
+                cmd.CommandText = "SELECT COUNT(*) FROM "+ tablo +" WHERE " +kolon+ " =@isim   ";
                 cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@isim", isim);
+                cmd.Parameters.AddWithValue("@isim", veri);
                 con.Open();
                 int sayi = Convert.ToInt32(cmd.ExecuteScalar());
                 if (sayi==0)
