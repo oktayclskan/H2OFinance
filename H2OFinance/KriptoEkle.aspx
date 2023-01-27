@@ -7,7 +7,7 @@
         <div class="titleHeader">
             <h1>Kripto Ekle</h1>
         </div>
-        <div style="padding-top: 150px;" class="row">
+        <div style="padding-top: 120px;" class="row">
             <asp:Panel ID="pnl_basarili" runat="server" CssClass="basarili" Visible="false">
                 Kripto Ekleme işlemi Başarılı
             </asp:Panel>
@@ -22,6 +22,12 @@
         <div class="row">
             <asp:TextBox ID="tb_MaxArz" runat="server" placeholder="Max Arz giriniz" CssClass="inputBox"></asp:TextBox>
         </div>
+       
+        <div class="row">
+             <label>Resim Ekle</label>
+            <br />
+            <asp:FileUpload ID="fu_resim" runat="server" CssClass="resimEkle"></asp:FileUpload>
+            </div>
         <div class="row">
             <asp:LinkButton ID="lbtn_Ekle" runat="server" Text="Ekle" CssClass="EkleBtn" OnClick="lbtn_Ekle_Click"></asp:LinkButton>
         </div>

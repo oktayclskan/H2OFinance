@@ -73,10 +73,11 @@
     <Content Include="AdminPanel\Css\Sayfalar.css" />
     <Content Include="AdminPanel\images\GirisSayfasi.png" />
     <Content Include="AdminPanel\images\H2oDamlaLogo.png" />
+    <Content Include="AdminPanel\images\NFTCoinImg\adsa.PNG" />
     <Content Include="BakiyeOnay.aspx" />
     <Content Include="HomePage.aspx" />
     <Content Include="KriptoEkle.aspx" />
-    <Content Include="NFTEkle.aspx" />
+    <Content Include="NftEkle.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -115,12 +116,12 @@
     <Compile Include="KriptoEkle.aspx.designer.cs">
       <DependentUpon>KriptoEkle.aspx</DependentUpon>
     </Compile>
-    <Compile Include="NFTEkle.aspx.cs">
-      <DependentUpon>NFTEkle.aspx</DependentUpon>
+    <Compile Include="NftEkle.aspx.cs">
+      <DependentUpon>NftEkle.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="NFTEkle.aspx.designer.cs">
-      <DependentUpon>NFTEkle.aspx</DependentUpon>
+    <Compile Include="NftEkle.aspx.designer.cs">
+      <DependentUpon>NftEkle.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -140,6 +141,7 @@
       <Name>DataAccessLayer</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -15,8 +15,8 @@ namespace DataAccessLayer
             con = new SqlConnection(ConnectionStrings.H2OCon);
             cmd = con.CreateCommand();
         }
-        
-        public  Yoneticiler YoneticiGiris(string mail,string sifre)
+
+        public Yoneticiler YoneticiGiris(string mail, string sifre)
         {
             try
             {
@@ -26,7 +26,7 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@sifre", sifre);
                 con.Open();
                 int sayi = Convert.ToInt32(cmd.ExecuteScalar());
-                if (sayi>0)
+                if (sayi > 0)
                 {
                     cmd.CommandText = "Select * From Yoneticiler WHERE Mail=@mail AND Sifre=@sifre ";
                     cmd.Parameters.Clear();
@@ -58,17 +58,17 @@ namespace DataAccessLayer
         }
         #region CoinKontrol
 
-       
-        public bool VeriKontrol(string tablo ,string kolon , string veri)
+
+        public bool CoinKontrol(string isim)
         {
             try
             {
-                cmd.CommandText = "SELECT COUNT(*) FROM "+ tablo +" WHERE " +kolon+ " =@isim   ";
+                cmd.CommandText = "SELECT COUNT(*) FROM Coinler WHERE  Isim=@isim   ";
                 cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@isim", veri);
+                cmd.Parameters.AddWithValue("@isim", isim);
                 con.Open();
                 int sayi = Convert.ToInt32(cmd.ExecuteScalar());
-                if (sayi==0)
+                if (sayi == 0)
                 {
                     return true;
                 }
@@ -82,15 +82,16 @@ namespace DataAccessLayer
                 con.Close();
             }
         }
-        public bool CoinEkle (Coinler c)
+        public bool CoinEkle(Coinler c)
         {
             try
             {
-                cmd.CommandText = "Insert Into Coinler (CoinNick, Isim, Max_Arz) Values (@coinNick, @isim,@maxArz)";
+                cmd.CommandText = "INSERT INTO Coinler (CoinNick,Isim,Max_Arz,Resim) Values (@isim,@coinNick,@maxArz,@resim)";
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@coinNick", c.CoinNick);
                 cmd.Parameters.AddWithValue("@isim", c.Isim);
                 cmd.Parameters.AddWithValue("@maxArz", c.MaxArz);
+                cmd.Parameters.AddWithValue("@resim", c.Resim);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 return true;
@@ -98,6 +99,54 @@ namespace DataAccessLayer
             catch
             {
                 return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        #endregion
+        #region Nft Kontrol
+        public bool NftEkle(Nftler nft)
+        {
+            try
+            {
+                cmd.CommandText= "INSERT INTO NFT (Isim,Fiyat,Resim) Values (@isim,@Fiyat,@resim)";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@isim",nft.Isim);
+                cmd.Parameters.AddWithValue("@fiyat", nft.Fiyat);
+                cmd.Parameters.AddWithValue("@resim", nft.Resim);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        public bool NftKontrol(string isim)
+        {
+            try
+            {
+                cmd.CommandText = "SELECT COUNT(*) FROM NFT WHERE  Isim=@isim   ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@isim", isim);
+                con.Open();
+                int sayi = Convert.ToInt32(cmd.ExecuteScalar());
+                if (sayi == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             finally
             {

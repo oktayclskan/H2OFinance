@@ -1,47 +1,51 @@
 ﻿.homePage {
-    
     height: 100%;
-    background-color:#d57ac2;
+    background-color: #d57ac2;
     display: flex;
     justify-content: center;
     align-content: center;
     flex-wrap: wrap;
 }
-.homePage img {
-   width:400px;
+
+    .homePage img {
+        width: 400px;
+    }
+
+.EkleContainer {
+    background-color: #00ff90;
+    height: 100%;
 }
-.EkleContainer{
-    background-color:#00ff90;
-    height:100%;
-}
+
 .inputBox {
-    
-    background-color:antiquewhite;
-    border-radius:5px;
-    height:40px;
+    background-color: antiquewhite;
+    border-radius: 5px;
+    height: 40px;
     margin-top: 15px;
     width: 300px;
 }
-.row{
-    padding:10px;
+
+.row {
+    padding: 10px;
     text-align:center;
 }
-.EkleBtn
-{
-    border-radius:5px;
-    background-color:#0d0909;
-    color:white;
-    text-decoration:none;
-    padding:10px;
-    
+
+.EkleBtn {
+    border-radius: 5px;
+    background-color: #0d0909;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
 }
-.EkleBtn:hover{
-    color:red;
+
+    .EkleBtn:hover {
+        color: red;
+    }
+
+.titleHeader h1 {
+    text-align: center;
+    padding-top: 10px;
 }
-.titleHeader h1{
-    text-align:center;
-    padding-top:10px;
-}
+
 .basarili {
     margin: 15px auto;
     border: 1px solid #3e48ba;
@@ -54,14 +58,23 @@
     border: 1px solid #820f0f;
     border-radius: 5px;
 }
+
 .basarisiz {
-    border-radius:5px;
-    padding:7px;
-    margin:15px auto;
-    justify-content:center;
-    display:flex;
-    width:295px;
+    border-radius: 5px;
+    padding: 7px;
+    margin: 15px auto;
+    justify-content: center;
+    display: flex;
+    width: 295px;
     border: 1px solid #820f0f;
     background-color: red;
+}
+
+.row .resimEkle{
+    width:300px;
     
 }
+.row label {
+    margin-left:-200px;
+}
+
