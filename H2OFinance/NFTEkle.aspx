@@ -10,7 +10,7 @@
 
         <div style="padding-top: 120px;" class="row">
             <asp:Panel ID="pnl_basarili" runat="server" CssClass="basarili" Visible="false">
-                Kripto Ekleme işlemi Başarılı
+                Nft Ekleme işlemi Başarılı
             </asp:Panel>
             <asp:Panel ID="pnl_basarisiz" runat="server" CssClass="basarisiz" Visible="false">
                 <asp:Label ID="lbl_mesaj" runat="server"></asp:Label>

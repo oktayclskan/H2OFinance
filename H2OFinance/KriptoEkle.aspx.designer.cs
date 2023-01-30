@@ -69,6 +69,15 @@ namespace H2OFinance
         protected global::System.Web.UI.WebControls.TextBox tb_MaxArz;
 
         /// <summary>
+        /// tb_fiyat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_fiyat;
+
+        /// <summary>
         /// fu_resim control.
         /// </summary>
         /// <remarks>

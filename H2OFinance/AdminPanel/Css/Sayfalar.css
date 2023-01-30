@@ -77,4 +77,41 @@
 .row label {
     margin-left:-200px;
 }
+.OnayBtn {
+    padding: 5px;
+    font-size: 12px;
+    text-decoration: none;
+    background-color: blue;
+    color: white;
+    border: 1px solid blue;
+    border-radius: 5px;
+}
+.RedBtn {
+    font-size: 12px;
+    padding: 5px;
+    text-decoration: none;
+    background-color: red;
+    color: white;
+    border: 1px solid red;
+    border-radius:5px;
+    
+}
+.TalepList
+{
+   
+    display:flex;
+    justify-content:center;
+    padding-top:50px;
+}
+.TalepTable {
+    background-color: silver;
+}
+.TalepTable th{
+    padding:5px;
+}
+.TalepTable td{
+    padding:10px;
+}
+
+
 
