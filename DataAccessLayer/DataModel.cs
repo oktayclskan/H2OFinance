@@ -192,6 +192,65 @@ namespace DataAccessLayer
                 con.Close();
             }
         }
+        public bool BakiyeOnay(Talepler t) 
+        {
+            try
+            {
+                cmd.CommandText = "Update Talepler Set Durum=2 Where ID=@id Update Uyeler Set Bakiye=Bakiye+@miktar WHERE ID=@Uye_ID ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@id",t.ID);
+                cmd.Parameters.AddWithValue("@miktar",t.Miktar);
+                cmd.Parameters.AddWithValue("@Uye_ID",t.UyeID);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+            
+
+        }
+        public Talepler TalepGetir(int id)
+        {
+            try
+            {
+                Talepler t = new Talepler();
+                cmd.CommandText = "Select T.ID, T.Uye_ID, U.Isim, T.Yonetici_ID, Y.Isim, T.Miktar, T.TalepTarih, T.OnayTarihi, T.Durum From Talepler AS T JOIN Uyeler AS U ON T.Uye_ID=U.ID JOIN Yoneticiler AS Y ON T.Yonetici_ID=Y.ID WHERE T.ID=@id";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("id",id);
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    
+                    t.ID = reader.GetInt32(0);
+                    t.UyeID = reader.GetInt32(1);
+                    t.UyeAdi = reader.GetString(2);
+                    t.YoneticiID = reader.GetInt32(3);
+                    t.YoneticiAdi = reader.GetString(4);
+                    t.Miktar = reader.GetDecimal(5);
+                    t.TalepTarih = reader.GetDateTime(6);
+                    t.OnayTarih = !reader.IsDBNull(7) ? reader.GetDateTime(7) : reader.GetDateTime(6);
+                    t.Durum = reader.GetByte(8);
+                    
+                }
+                return t;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
         #endregion
     }
 
