@@ -11,8 +11,9 @@ namespace DataAccessLayer
         public int ID { get; set; }
         public string CoinNick { get; set; }
         public string Isim { get; set; }
-        public int MaxArz { get; set; }
+        public int Max_Arz { get; set; }
         public string Resim { get; set; }
         public decimal Fiyat { get; set; }
+        public bool Aktif { get; set; }
     }
 }

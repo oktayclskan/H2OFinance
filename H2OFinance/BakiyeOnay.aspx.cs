@@ -20,25 +20,35 @@ namespace H2OFinance
         protected void lv_talepler_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             Talepler t = new Talepler();
-            if (Session["Yönetici"]!=null)
+            Yoneticiler y = (Yoneticiler)Session["yönetici"];
+            if (e.CommandName == "onay")
             {
-                Yoneticiler y = (Yoneticiler)Session["yönetici"];
-                y.Isim = $"{y.Isim} {y.Soyisim}";
-                if (e.CommandName == "onay")
+                int id = Convert.ToInt32(e.CommandArgument);
+                t = dm.TalepGetir(id);
+                t.YoneticiID = y.ID;
+                t.OnayTarih = DateTime.Now;
+                dm.talepUpdate(t);
+                if (dm.BakiyeOnay(t))
                 {
-
-                    int id = Convert.ToInt32(e.CommandArgument);
-                    t = dm.TalepGetir(id);
-
-                    if (dm.BakiyeOnay(t))
-                    {
-                        lv_bekleyen.DataSource = dm.TalepListele(1);
-                        lv_bekleyen.DataBind();
-                    }
+                    lv_bekleyen.DataSource = dm.TalepListele(1);
+                    lv_bekleyen.DataBind();
                 }
             }
-            
-           
+            if (e.CommandName == "red")
+            {
+                int id = Convert.ToInt32(e.CommandArgument);
+                dm.TalepGetir(id);
+                t.YoneticiID = y.ID;
+                t.OnayTarih = DateTime.Now;
+                if (dm.bakiyeReddet(id))
+                {
+                    lv_reddedilenler.DataSource = dm.TalepListele(3);
+                    lv_reddedilenler.DataBind();
+                }
+            }
+
+
+
         }
 
         protected void lbtn_onay_Click(object sender, EventArgs e)

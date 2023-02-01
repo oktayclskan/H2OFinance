@@ -90,9 +90,9 @@ namespace DataAccessLayer
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@coinNick", c.CoinNick);
                 cmd.Parameters.AddWithValue("@isim", c.Isim);
-                cmd.Parameters.AddWithValue("@maxArz", c.MaxArz);
+                cmd.Parameters.AddWithValue("@maxArz", c.Max_Arz);
                 cmd.Parameters.AddWithValue("@resim", c.Resim);
-                cmd.Parameters.AddWithValue("@fiyat",c.Fiyat);
+                cmd.Parameters.AddWithValue("@fiyat", c.Fiyat);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 return true;
@@ -106,6 +106,38 @@ namespace DataAccessLayer
                 con.Close();
             }
         }
+        public List<Coinler> CoinListele()
+        {
+            try
+            {
+                List<Coinler> coin = new List<Coinler>();
+                cmd.CommandText = "SELECT ID,  Isim, CoinNick, Max_Arz, Fiyat From Coinler";
+                cmd.Parameters.Clear();
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    Coinler c = new Coinler();
+                    c.ID = reader.GetInt32(0);
+                    c.Isim = reader.GetString(1);
+                    c.CoinNick = reader.GetString(2);
+                    c.Max_Arz = reader.GetInt32(3);
+                    c.Fiyat = reader.GetDecimal(4);
+                    coin.Add(c);
+                }
+                return coin;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
 
         #endregion
         #region Nft Kontrol
@@ -113,9 +145,9 @@ namespace DataAccessLayer
         {
             try
             {
-                cmd.CommandText= "INSERT INTO NFT (Isim,Fiyat,Resim) Values (@isim,@Fiyat,@resim)";
+                cmd.CommandText = "INSERT INTO NFT (Isim,Fiyat,Resim) Values (@isim,@Fiyat,@resim)";
                 cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@isim",nft.Isim);
+                cmd.Parameters.AddWithValue("@isim", nft.Isim);
                 cmd.Parameters.AddWithValue("@fiyat", nft.Fiyat);
                 cmd.Parameters.AddWithValue("@resim", nft.Resim);
                 con.Open();
@@ -163,12 +195,12 @@ namespace DataAccessLayer
                 List<Talepler> tlp = new List<Talepler>();
                 cmd.CommandText = "Select T.ID, T.Uye_ID, U.Isim, T.Yonetici_ID, Y.Isim, T.Miktar, T.TalepTarih, T.OnayTarihi, T.Durum From Talepler AS T JOIN Uyeler AS U ON T.Uye_ID=U.ID JOIN Yoneticiler AS Y ON T.Yonetici_ID=Y.ID WHERE T.Durum=@durum";
                 cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@durum",d);
+                cmd.Parameters.AddWithValue("@durum", d);
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                   
+
                     Talepler t = new Talepler();
                     t.ID = reader.GetInt32(0);
                     t.UyeID = reader.GetInt32(1);
@@ -177,7 +209,7 @@ namespace DataAccessLayer
                     t.YoneticiAdi = reader.GetString(4);
                     t.Miktar = reader.GetDecimal(5);
                     t.TalepTarih = reader.GetDateTime(6);
-                    t.OnayTarih = !reader.IsDBNull(7) ? reader.GetDateTime(7) :reader.GetDateTime(6) ;
+                    t.OnayTarih = !reader.IsDBNull(7) ? reader.GetDateTime(7) : reader.GetDateTime(6);
                     t.Durum = reader.GetByte(8);
                     tlp.Add(t);
                 }
@@ -192,15 +224,15 @@ namespace DataAccessLayer
                 con.Close();
             }
         }
-        public bool BakiyeOnay(Talepler t) 
+        public bool BakiyeOnay(Talepler t)
         {
             try
             {
                 cmd.CommandText = "Update Talepler Set Durum=2 Where ID=@id Update Uyeler Set Bakiye=Bakiye+@miktar WHERE ID=@Uye_ID ";
                 cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@id",t.ID);
-                cmd.Parameters.AddWithValue("@miktar",t.Miktar);
-                cmd.Parameters.AddWithValue("@Uye_ID",t.UyeID);
+                cmd.Parameters.AddWithValue("@id", t.ID);
+                cmd.Parameters.AddWithValue("@miktar", t.Miktar);
+                cmd.Parameters.AddWithValue("@Uye_ID", t.UyeID);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 return true;
@@ -213,7 +245,7 @@ namespace DataAccessLayer
             {
                 con.Close();
             }
-            
+
 
         }
         public Talepler TalepGetir(int id)
@@ -223,12 +255,12 @@ namespace DataAccessLayer
                 Talepler t = new Talepler();
                 cmd.CommandText = "Select T.ID, T.Uye_ID, U.Isim, T.Yonetici_ID, Y.Isim, T.Miktar, T.TalepTarih, T.OnayTarihi, T.Durum From Talepler AS T JOIN Uyeler AS U ON T.Uye_ID=U.ID JOIN Yoneticiler AS Y ON T.Yonetici_ID=Y.ID WHERE T.ID=@id";
                 cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("id",id);
+                cmd.Parameters.AddWithValue("id", id);
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    
+
                     t.ID = reader.GetInt32(0);
                     t.UyeID = reader.GetInt32(1);
                     t.UyeAdi = reader.GetString(2);
@@ -238,7 +270,7 @@ namespace DataAccessLayer
                     t.TalepTarih = reader.GetDateTime(6);
                     t.OnayTarih = !reader.IsDBNull(7) ? reader.GetDateTime(7) : reader.GetDateTime(6);
                     t.Durum = reader.GetByte(8);
-                    
+
                 }
                 return t;
             }
@@ -250,6 +282,40 @@ namespace DataAccessLayer
             {
                 con.Close();
             }
+
+        }
+        public void talepUpdate(Talepler t)
+        {
+            try
+            {
+                cmd.CommandText = "Update Talepler Set OnayTarihi=@onayTarihi, Yonetici_ID=@yid WHERE ID=@id";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("onaytarihi", t.OnayTarih);
+                cmd.Parameters.AddWithValue("@yid", t.YoneticiID);
+                cmd.Parameters.AddWithValue("@id", t.ID);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public bool bakiyeReddet(int id)
+        {
+            try
+            {
+                cmd.CommandText = "Update Talepler Set Durum=3 WHERE ID=@id";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@id", id);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch { return false; }
+            finally { con.Close(); }
         }
         #endregion
     }

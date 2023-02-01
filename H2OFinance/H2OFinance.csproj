@@ -75,6 +75,7 @@
     <Content Include="AdminPanel\images\H2oDamlaLogo.png" />
     <Content Include="AdminPanel\images\NFTCoinImg\adsa.PNG" />
     <Content Include="BakiyeOnay.aspx" />
+    <Content Include="CoinDelist.aspx" />
     <Content Include="HomePage.aspx" />
     <Content Include="KriptoEkle.aspx" />
     <Content Include="NftEkle.aspx" />
@@ -101,6 +102,13 @@
     </Compile>
     <Compile Include="BakiyeOnay.aspx.designer.cs">
       <DependentUpon>BakiyeOnay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CoinDelist.aspx.cs">
+      <DependentUpon>CoinDelist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CoinDelist.aspx.designer.cs">
+      <DependentUpon>CoinDelist.aspx</DependentUpon>
     </Compile>
     <Compile Include="HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>

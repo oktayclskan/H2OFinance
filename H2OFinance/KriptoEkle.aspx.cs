@@ -29,7 +29,7 @@ namespace H2OFinance
                             Coinler c = new Coinler();
                             c.Isim = kriptoIsim.Text;
                             c.CoinNick = kriptoIsim.Text;
-                            c.MaxArz = Convert.ToInt32(tb_MaxArz.Text);
+                            c.Max_Arz = Convert.ToInt32(tb_MaxArz.Text);
                             c.Fiyat = Convert.ToDecimal(tb_fiyat.Text);
                             if (fu_resim.HasFile)
                             {
