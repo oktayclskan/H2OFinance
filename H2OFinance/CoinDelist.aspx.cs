@@ -19,7 +19,16 @@ namespace H2OFinance
 
         protected void lv_coinDelist_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
+           
 
+        }
+
+        protected void lv_coinDelist_ItemCommand1(object sender, ListViewCommandEventArgs e)
+        {
+            int id = Convert.ToInt32(e.CommandArgument);
+            dm.DeleteCoin(id);
+            lv_coinDelist.DataSource = dm.CoinListele();
+            lv_coinDelist.DataBind();
         }
     }
 }

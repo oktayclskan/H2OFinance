@@ -138,6 +138,19 @@ namespace DataAccessLayer
             }
 
         }
+        public void DeleteCoin(int id)
+        {
+            try
+            {
+                cmd.CommandText = "DELETE FROM Coinler WHERE ID=@id";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@id", id);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+
+            finally { con.Close(); }
+        }
 
         #endregion
         #region Nft Kontrol
