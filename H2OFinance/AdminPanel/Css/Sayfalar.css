@@ -104,26 +104,41 @@
     border: 1px solid rosybrown;
     border-radius: 5px;
 }
-}
-.TalepList {
+.coinDelist{
     
+}
+
+.TalepList {
     display: flex;
     justify-content: center;
     padding-top: 50px;
 }
 .TalepTable {
     background-color: silver;
+    
+    
 }
 .TalepTable th{
     padding:5px;
 }
-.TalepTable td{
-    padding:10px;
+
+.TalepTable td {
+    padding: 10px;
 }
 .btnlar{
     text-align:center;
     padding:15px;
 }
-
+.delistBtn {
+    padding: 5px;
+    text-decoration: none;
+    margin-left: 15px;
+    background-color: #b72f2f;
+    color: white;
+    border-radius: 5px;
+}
+.delistBtn:hover{
+    color:aqua;
+}
 
 

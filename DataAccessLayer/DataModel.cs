@@ -111,7 +111,7 @@ namespace DataAccessLayer
             try
             {
                 List<Coinler> coin = new List<Coinler>();
-                cmd.CommandText = "SELECT ID,  Isim, CoinNick, Max_Arz, Fiyat From Coinler";
+                cmd.CommandText = "SELECT ID,  Isim, CoinNick, Max_Arz,Durum, Fiyat From Coinler";
                 cmd.Parameters.Clear();
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -123,7 +123,9 @@ namespace DataAccessLayer
                     c.Isim = reader.GetString(1);
                     c.CoinNick = reader.GetString(2);
                     c.Max_Arz = reader.GetInt32(3);
-                    c.Fiyat = reader.GetDecimal(4);
+                    c.Durum = reader.GetBoolean(4);
+                    c.DurumStr = reader.GetBoolean(4) ? "<label style='color:green'>Aktif</label>" : "<label style='color:gray'>Pasif</label> ";
+                    c.Fiyat = reader.GetDecimal(5);
                     coin.Add(c);
                 }
                 return coin;
@@ -138,11 +140,11 @@ namespace DataAccessLayer
             }
 
         }
-        public void DeleteCoin(int id)
+        public void CoinDurumDegiştir(int id)
         {
             try
             {
-                cmd.CommandText = "DELETE FROM Coinler WHERE ID=@id";
+                cmd.CommandText = "UPDATE Coinler SET Durum=0 WHERE ID=@id";
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@id", id);
                 con.Open();
@@ -151,6 +153,18 @@ namespace DataAccessLayer
 
             finally { con.Close(); }
         }
+        //public void DeleteCoin(int id)
+        //{
+        //    try
+        //    {
+        //        cmd.CommandText = "Delete From Coinler Where ID=@id";
+        //        cmd.Parameters.Clear();
+        //        cmd.Parameters.AddWithValue("@id",id);
+        //        con.Open();
+        //        cmd.ExecuteNonQuery();
+        //    }
+        //    finally { con.Close(); }
+        //}
 
         #endregion
         #region Nft Kontrol
