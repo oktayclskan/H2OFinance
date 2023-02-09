@@ -111,7 +111,7 @@ namespace DataAccessLayer
             try
             {
                 List<Coinler> coin = new List<Coinler>();
-                cmd.CommandText = "SELECT ID,  Isim, CoinNick, Max_Arz,Durum, Fiyat From Coinler";
+                cmd.CommandText = "SELECT ID, Isim, CoinNick, Max_Arz, Fiyat From Coinler WHERE Durum = 1";
                 cmd.Parameters.Clear();
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -123,9 +123,9 @@ namespace DataAccessLayer
                     c.Isim = reader.GetString(1);
                     c.CoinNick = reader.GetString(2);
                     c.Max_Arz = reader.GetInt32(3);
-                    c.Durum = reader.GetBoolean(4);
-                    c.DurumStr = reader.GetBoolean(4) ? "<label style='color:green'>Aktif</label>" : "<label style='color:gray'>Pasif</label> ";
-                    c.Fiyat = reader.GetDecimal(5);
+                    c.Fiyat = reader.GetDecimal(4);
+                    //c.Durum = reader.GetBoolean(5);
+                    //c.DurumStr = reader.GetBoolean(5) ? "<label style='color:green'>Aktif</label>" : "<label style='color:gray'>Pasif</label> ";
                     coin.Add(c);
                 }
                 return coin;
