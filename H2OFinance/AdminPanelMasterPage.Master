@@ -27,10 +27,11 @@
         </div>
         <div class="container">
             <div class="sideContainer lila">
+                <a href="CoinDelist.aspx">Kripto Listele</a>
                 <a href="KriptoEkle.aspx">Kripto Ekle</a><br />
                 <a href="NFTEkle.aspx">NFT Ekle</a><br />
                 <a href="BakiyeOnay.aspx">Bakiye Onay</a><br />
-                <a href="CoinDelist.aspx">Coin Delist</a>
+                
             </div>
             <div class="contentContainer">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

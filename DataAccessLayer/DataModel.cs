@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
 
 namespace DataAccessLayer
@@ -86,7 +83,7 @@ namespace DataAccessLayer
         {
             try
             {
-                cmd.CommandText = "INSERT INTO Coinler (CoinNick,Isim,Max_Arz,Resim,Fiyat) Values (@isim,@coinNick,@maxArz,@resim,@fiyat)";
+                cmd.CommandText = "INSERT INTO Coinler (CoinNick,Isim,Max_Arz,Resim,Fiyat,Durum) Values (@isim,@coinNick,@maxArz,@resim,@fiyat,1)";
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@coinNick", c.CoinNick);
                 cmd.Parameters.AddWithValue("@isim", c.Isim);
@@ -111,19 +108,19 @@ namespace DataAccessLayer
             try
             {
                 List<Coinler> coin = new List<Coinler>();
-                cmd.CommandText = "SELECT ID, Isim, CoinNick, Max_Arz, Fiyat From Coinler WHERE Durum = 1";
+                cmd.CommandText = "SELECT ID,CoinNick,Isim,Max_Arz,Resim,Fiyat From Coinler WHERE Durum = 1";
                 cmd.Parameters.Clear();
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-
                     Coinler c = new Coinler();
                     c.ID = reader.GetInt32(0);
-                    c.Isim = reader.GetString(1);
-                    c.CoinNick = reader.GetString(2);
+                    c.CoinNick = reader.GetString(1);
+                    c.Isim = reader.GetString(2);
                     c.Max_Arz = reader.GetInt32(3);
-                    c.Fiyat = reader.GetDecimal(4);
+                    c.Resim = !reader.IsDBNull(4) ? reader.GetString(4) : "none.png";
+                    c.Fiyat = reader.GetDecimal(5);
                     //c.Durum = reader.GetBoolean(5);
                     //c.DurumStr = reader.GetBoolean(5) ? "<label style='color:green'>Aktif</label>" : "<label style='color:gray'>Pasif</label> ";
                     coin.Add(c);
@@ -165,6 +162,59 @@ namespace DataAccessLayer
         //    }
         //    finally { con.Close(); }
         //}
+        public bool CoinGuncelle(Coinler c)
+        {
+            try
+            {
+                cmd.CommandText = "UPDATE Coinler SET Isim=@isim,CoinNick=@coinNick,Max_Arz=@maxArz,Resim=@resim WHERE ID=@id";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@id", c.ID);
+                cmd.Parameters.AddWithValue("@isim", c.Isim);
+                cmd.Parameters.AddWithValue("@coinNick", c.CoinNick);
+                cmd.Parameters.AddWithValue("@maxArz", c.Max_Arz);
+                cmd.Parameters.AddWithValue("@resim", c.Resim);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        public Coinler CoinGetir(int id)
+        {
+            try
+            {
+
+                cmd.CommandText = "SELECT * FROM Coinler WHERE ID=@id";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@id", id);
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                Coinler c = new Coinler();
+                while (reader.Read())
+                {
+                    c.ID = reader.GetInt32(0);
+                    c.CoinNick = reader.GetString(1);
+                    c.Isim = reader.GetString(2);
+                    c.Max_Arz = reader.GetInt32(3);
+                    c.Resim = !reader.IsDBNull(4) ? reader.GetString(4) : "none.png";
+                    c.Fiyat = reader.GetDecimal(5);
+                    c.Durum = reader.GetBoolean(6);
+                }
+                return c;
+            }
+            catch
+            {
+                return null;
+            }
+            finally { con.Close(); }
+        }
 
         #endregion
         #region Nft Kontrol

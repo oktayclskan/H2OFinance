@@ -34,7 +34,7 @@
         <div class="row">
             <asp:LinkButton ID="lbtn_Ekle" runat="server" Text="Ekle" CssClass="EkleBtn" OnClick="lbtn_Ekle_Click"></asp:LinkButton>
         </div>
-
+        <img src="AdminPanel/images/NFTCoinImg/adsa.PNG" />
 
     </div>
 

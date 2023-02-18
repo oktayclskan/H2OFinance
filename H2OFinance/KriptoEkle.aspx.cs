@@ -31,6 +31,7 @@ namespace H2OFinance
                             c.CoinNick = kriptoIsim.Text;
                             c.Max_Arz = Convert.ToInt32(tb_MaxArz.Text);
                             c.Fiyat = Convert.ToDecimal(tb_fiyat.Text);
+                            c.Durum = true;
                             if (fu_resim.HasFile)
                             {
                                 FileInfo fi = new FileInfo(fu_resim.FileName);

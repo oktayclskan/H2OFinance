@@ -12,6 +12,7 @@
                         <th>Coin Nick</th>
                         <th>İsim</th>
                         <th>Max Arz</th>
+                        <th>Resim</th>
                         <th>Fiyat</th>
                         <th>Seçenekler</th>
                     </tr>
@@ -24,9 +25,13 @@
                     <td><%# Eval("CoinNick") %></td>
                     <td><%# Eval("Isim") %></td>
                     <td><%# Eval("Max_Arz") %></td>
+                    <td>
+                        <img style="text-align: center;" src="../AdminPanel/images/NFTCoinImg/<%# Eval("Resim")%>" width="50" /></td>
+                    </td>
                     <td><%# Eval("Fiyat") %></td>
                     <td>
                         <asp:LinkButton ID="lbtn_sil" runat="server" CssClass="delistBtn" CommandArgument='<%# Eval("ID") %>' CommandName="delist">Delist</asp:LinkButton>
+                        <a href='KriptoDuzenle.aspx?cid=<%# Eval("ID") %>' class="duzenleBtn">Düzenle</a>
                     </td>
                 </tr>
 

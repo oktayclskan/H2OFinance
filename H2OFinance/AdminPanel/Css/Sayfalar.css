@@ -143,5 +143,18 @@
 .delistBtn:hover{
     color:aqua;
 }
+.menuItem {
+    border:1px solid silver;
+}
+.dropdownContainer {
+    display: none;
+}
+.duzenleBtn{
+    text-decoration:none;
+    background-color:#3e48ba;
+    color:whitesmoke;
+    padding:5px;
+    border-radius:5px;
+}
 
 
